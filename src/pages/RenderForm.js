@@ -6,11 +6,13 @@ import * as uuid from "uuid"
 import PreviewForm from '../components/PreviewForm';
 
 function RenderForm(props) {
+    const [form, setForm] = useState(null);
     const [inputs, setInputs] = useState([])
     const [formData, setFormData] = useState({})
 
     const getFormById = async (id) => {
         const response = await axios.get(`http://localhost:5000/forms/${id}`)
+        setForm(response.data)
         setInputs(response.data.inputs);
     }
 
@@ -34,9 +36,8 @@ function RenderForm(props) {
 
     const save = async () => {
         const id = props.match.params.id;
-        const data = { id: uuid.v4(), form_id: id, formData }
+        const data = { id: uuid.v4(), form_id: id, formData, form: form }
         await axios.post(`http://localhost:5000/forms-data`, data)
-        console.log(data);
     }
 
     return (

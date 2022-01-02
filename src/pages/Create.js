@@ -10,6 +10,7 @@ import PreviewForm from '../components/PreviewForm';
 
 function Create() {
   const inputTypes = {
+    "MULTIPLE_OPTION": "option",
     "TEXT": "text",
     "SELECT": "select",
     "TEXTAREA": "textarea",
@@ -24,6 +25,7 @@ function Create() {
       id: uuid.v4(),
       type: "",
       labelText: "",
+      length: 100,
       options: []
     }
   ]);
@@ -42,7 +44,6 @@ function Create() {
 
   const showData = async () => {
     await axios.post("http://localhost:5000/forms", { id: uuid.v4(), inputs })
-    console.log({ id: uuid.v4(), inputs })
   }
 
   const handlerDataEachField = (index, key, value) => {
@@ -80,7 +81,7 @@ function Create() {
   }
 
   const renderOptions = (item, index) => {
-    if (item.type != inputTypes.SELECT) {
+    if (item.type !== inputTypes.SELECT && item.type !== inputTypes.MULTIPLE_OPTION) {
       return false;
     }
 
