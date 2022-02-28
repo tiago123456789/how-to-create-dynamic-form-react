@@ -7,6 +7,7 @@ import {
 } from 'reactstrap';
 import axios from 'axios';
 import PreviewForm from '../components/PreviewForm';
+import validation from '../constants/validation';
 
 function Create() {
   const inputTypes = {
@@ -19,6 +20,9 @@ function Create() {
     "DATE": "date",
     "TIME": "time",
   };
+  
+  const optionsByTypeValidation = validation.optionsByTypeValidation;
+  const labelValidation = validation.labelValidation;
 
   const [inputs, setInputs] = useState([
     {
@@ -26,7 +30,11 @@ function Create() {
       type: "",
       labelText: "",
       length: 100,
-      options: []
+      options: [],
+      validate: {
+        type: "",
+        options: {}
+      }
     }
   ]);
 
@@ -37,7 +45,10 @@ function Create() {
       id: uuid.v4(),
       type: "",
       labelText: "",
-      options: []
+      options: [],
+      validate: {
+        type: "",
+      }
     }
     ])
   }
@@ -49,6 +60,20 @@ function Create() {
   const handlerDataEachField = (index, key, value) => {
     const fields = inputs
     fields[index][key] = value;
+    setInputs([...inputs])
+  }
+
+  const handlerValidation = (index, key, value) => {
+    const fields = inputs;
+
+    if (value == "null") {
+      fields[index]["validate"] = null;
+    } else {
+      fields[index]["validate"] = {};
+      fields[index]["validate"][key] = value;
+      fields[index]["validate"]["options"] = optionsByTypeValidation[value] || null;
+    }
+    
     setInputs([...inputs])
   }
 
@@ -182,6 +207,20 @@ function Create() {
                     />
                   </FormGroup>
                   {renderOptions(item, index)}
+                  <FormGroup>
+                    <Label>Tipo de validação:</Label>
+                    <select className="form-control"
+                      onChange={(event) => handlerValidation(index, "type", event.target.value)}>
+                        <option value={"null"}>Não é necessário validação</option>
+                      {
+                        Object.keys(labelValidation).map(label => {
+                          return (
+                            <option value={label}>{labelValidation[label]}</option>
+                          )
+                        })
+                      }
+                    </select>
+                  </FormGroup>
                 </CardBody>
               </Card>
             )
@@ -189,14 +228,14 @@ function Create() {
         }
       </Form>
 
-      <br/>
-      <br/>
+      <br />
+      <br />
       <Form>
         <h1>Preview form</h1>
         <PreviewForm
-           inputs={inputs} formData={{}}
-           getKeyField={getKeyField} 
-           handlerFormData={handlerFormData}
+          inputs={inputs} formData={{}}
+          getKeyField={getKeyField}
+          handlerFormData={handlerFormData}
         />
       </Form>
     </Container>

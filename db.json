@@ -360,6 +360,62 @@
           "options": []
         }
       ]
+    },
+    {
+      "id": "30bc8ad5-27b9-4adc-8d76-3bdc3699c207",
+      "inputs": [
+        {
+          "id": "6bf397b6-1b08-468a-8b25-8296610462db",
+          "type": "email",
+          "labelText": "Type email?",
+          "options": [],
+          "validate": {
+            "type": "EMAIL",
+            "options": null
+          }
+        },
+        {
+          "id": "671aa2d3-310d-4153-81c5-0464467f9ed7",
+          "type": "textarea",
+          "labelText": "Type something?",
+          "options": [],
+          "validate": {
+            "type": "REQUIRED",
+            "options": {
+              "min": 1
+            }
+          }
+        },
+        {
+          "id": "b530c2d8-14c2-4076-9e12-e3db562d98bc",
+          "type": "password",
+          "labelText": "Type password weak?",
+          "options": [],
+          "validate": {
+            "type": "PASSWORD_WEAK",
+            "options": {
+              "regex": "([0-9a-zAz]){6,}"
+            }
+          }
+        },
+        {
+          "id": "21d8dfc6-e4cc-4c5a-84da-cd9e371aeea3",
+          "type": "password",
+          "labelText": "Type password is stronger?",
+          "options": [],
+          "validate": {
+            "type": "PASSWORD_STRONGER",
+            "options": {
+              "regex": [
+                "([#$@%&*]){1,}",
+                "([a-z]){1,}",
+                "([A-Z]){1,}",
+                "([0-9a-zA-Z]){9,}"
+              ]
+            }
+          }
+        }
+      ]
     }
   ],
   "forms-data": [
@@ -848,6 +904,72 @@
                 "label": "31 ou mais"
               }
             ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "287c46a7-04d3-4845-b257-fb08357205a7",
+      "form_id": "30bc8ad5-27b9-4adc-8d76-3bdc3699c207",
+      "formData": {
+        "6bf397b6-1b08-468a-8b25-8296610462db": "tiagorosaa@gmail.com",
+        "671aa2d3-310d-4153-81c5-0464467f9ed7": "teste",
+        "b530c2d8-14c2-4076-9e12-e3db562d98bc": "444444",
+        "21d8dfc6-e4cc-4c5a-84da-cd9e371aeea3": "123456789@#$ABa"
+      },
+      "form": {
+        "id": "30bc8ad5-27b9-4adc-8d76-3bdc3699c207",
+        "inputs": [
+          {
+            "id": "6bf397b6-1b08-468a-8b25-8296610462db",
+            "type": "email",
+            "labelText": "Type email?",
+            "options": [],
+            "validate": {
+              "type": "EMAIL",
+              "options": null
+            }
+          },
+          {
+            "id": "671aa2d3-310d-4153-81c5-0464467f9ed7",
+            "type": "textarea",
+            "labelText": "Type something?",
+            "options": [],
+            "validate": {
+              "type": "REQUIRED",
+              "options": {
+                "min": 1
+              }
+            }
+          },
+          {
+            "id": "b530c2d8-14c2-4076-9e12-e3db562d98bc",
+            "type": "password",
+            "labelText": "Type password weak?",
+            "options": [],
+            "validate": {
+              "type": "PASSWORD_WEAK",
+              "options": {
+                "regex": "([0-9a-zAz]){6,}"
+              }
+            }
+          },
+          {
+            "id": "21d8dfc6-e4cc-4c5a-84da-cd9e371aeea3",
+            "type": "password",
+            "labelText": "Type password is stronger?",
+            "options": [],
+            "validate": {
+              "type": "PASSWORD_STRONGER",
+              "options": {
+                "regex": [
+                  "([#$@%&*]){1,}",
+                  "([a-z]){1,}",
+                  "([A-Z]){1,}",
+                  "([0-9a-zA-Z]){9,}"
+                ]
+              }
+            }
           }
         ]
       }

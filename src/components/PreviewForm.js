@@ -1,7 +1,10 @@
 import React from "react"
-import { FormGroup, Input, Label, Button } from 'reactstrap';
+import { FormGroup, Input, Label } from 'reactstrap';
 
-const PreviewForm = ({ formData, inputs, handlerFormData, getKeyField }) => {
+const PreviewForm = ({
+    errorValidation, 
+    formData, inputs, handlerFormData, getKeyField 
+}) => {
     const renderManyOptions = (item) => {
         return (
             <FormGroup>
@@ -40,8 +43,21 @@ const PreviewForm = ({ formData, inputs, handlerFormData, getKeyField }) => {
                     }
 
                 </div>
+                { renderErrorValidation(item)}
             </FormGroup>
         )
+    }
+
+    const isExistErrorValidation = (inputId) => {
+        if (!errorValidation[inputId]) {
+            return false;
+        }
+        return true;
+    }
+
+    const renderErrorValidation = (item) => {
+        if (!isExistErrorValidation(item.id)) return false;
+        return (<span className="text-danger">{errorValidation[item.id]}</span>);
     }
 
     return inputs.map(item => {
@@ -67,6 +83,8 @@ const PreviewForm = ({ formData, inputs, handlerFormData, getKeyField }) => {
                         })
                     }
                 </Input>
+                { renderErrorValidation(item)}
+                
             </FormGroup>
         )
     })
