@@ -330,6 +330,36 @@
           ]
         }
       ]
+    },
+    {
+      "id": "1c2ba421-41ac-48ea-b28d-3043a454ce24",
+      "inputs": [
+        {
+          "id": "ff7b7f6f-39c0-4313-8647-1f13ed64fb4a",
+          "type": "text",
+          "labelText": "What is your age currently?",
+          "length": 100,
+          "options": []
+        },
+        {
+          "id": "0a0ebf45-f329-47bb-b41b-346f5f6e5ffe",
+          "type": "email",
+          "labelText": "What is your email",
+          "options": []
+        },
+        {
+          "id": "867b866c-5094-47bb-b689-b97854b8be0c",
+          "type": "password",
+          "labelText": "Type your password to access?",
+          "options": []
+        },
+        {
+          "id": "0939e3db-a77a-4402-b193-45834372a030",
+          "type": "textarea",
+          "labelText": "Can you describe about you?",
+          "options": []
+        }
+      ]
     }
   ],
   "forms-data": [

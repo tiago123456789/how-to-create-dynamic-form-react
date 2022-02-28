@@ -142,7 +142,7 @@ function Create() {
       <Form>
         <br />
         <Button onClick={() => addField()}>Adicionar novo campo</Button>&nbsp;
-        <Button onClick={() => showData()}>Show data</Button>
+        <Button onClick={() => showData()}>Save</Button>
         <br />
         <br />
         {isExistInputs() &&
