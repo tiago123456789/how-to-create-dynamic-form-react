@@ -5,19 +5,13 @@ import { Container, Form, Button } from 'reactstrap';
 import * as uuid from "uuid"
 import validator from 'validator';
 import PreviewForm from '../components/PreviewForm';
+import Validation from "../constants/validation"
 
 function RenderForm(props) {
     const [form, setForm] = useState(null);
     const [inputs, setInputs] = useState([])
     const [formData, setFormData] = useState({})
     const [errorValidation, setErrorValidation] = useState({})
-    const errorMessageByValidation = {
-        REQUIRED: "Campo é obrigatório",
-        EMAIL: "Email tem que ser válido",
-        DATE: "Data tem que ser válida",
-        PASSWORD_WEAK: "Senha tem que ter pelo menos 6 caracteres.",
-        PASSWORD_STRONGER: "Senha tem que ter pelo menos 10 caracteres, um maiusculo, um minusculo e um caracter especial"
-    }
 
     const setFormDataInitialState = (form) => {
         const formDataInitialState = {};
@@ -94,7 +88,7 @@ function RenderForm(props) {
             const id = ids[index];
             const validation = (mapInputValidation[id])
             if (!validatorByType[validation.type](formData[id] || "", validation.options)) {
-                messages[id] = (errorMessageByValidation[validation.type])
+                messages[id] = (Validation.errorMessageByValidation[validation.type])
             }
         }
 
@@ -105,6 +99,7 @@ function RenderForm(props) {
         const id = props.match.params.id;
         const data = { id: uuid.v4(), form_id: id, formData, form: form }
         const errorValidation = validateForm(formData);
+        // {} => []
         const isInvalid = Object.keys(errorValidation).length > 0
         if (isInvalid) {
             setErrorValidation(errorValidation)
